@@ -22,9 +22,7 @@ public class ArraySolution {
 			answer[i] = (int) temp.get(commands[i][2]-1);
 		}
 		
-		for (int i = 0; i < answer.length; i++) {
-			System.out.println(answer[i]);
-		}
+		
 		
 		
 	}
