@@ -20,6 +20,7 @@ public class SearchString {
 		List t = Arrays.asList(target.split(""));
 		Collections.sort(w);
 		Collections.sort(t);
+		Arrays.sort(word.split(""));
 		
 		if(w.size()!=t.size()) {
 			return answer;
