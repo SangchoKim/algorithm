@@ -12,8 +12,8 @@ public class GetAcrossBridge {
 		int answer = 0;
 		Queue<Integer> ready = new LinkedList<Integer>();
 		Queue<Integer> ing = new LinkedList<Integer>();
-		Queue<Integer> done = new LinkedList<Integer>();
 		int def = 0;
+		boolean c = false;
 		for (int i = 0; i < truck_weights.length; i++) {
 			ready.add(truck_weights[i]);
 		}
@@ -24,25 +24,31 @@ public class GetAcrossBridge {
 				break;
 			}
 			
-			ing.add(ready.poll());
-			answer+=bridge_length;
-			def = Math.abs(weight-ing.peek());
+			int first = ready.poll();
 			
-			if(!ready.isEmpty() && def<ready.peek()) {
-				done.add(ing.poll());
-			}else if(!ready.isEmpty()&& def>ready.peek()){
-				while(def<0) {
-				  ing.add(ready.poll());
-				  def -= ready.peek();
-				}
-				done.add(ing.poll());
-				answer+=bridge_length;
-			}else {
-				done.add(ing.poll());
+			if(!c) {
+				def = Math.abs(weight-first);
 			}
 			
-			System.out.println(answer);
+			
+			if(!c && def<ready.peek()) {
+				// 다리를 건너는 중 한명만
+				ing.add(first);
+				c=false;
+				answer+=bridge_length;
+			}
+			
+			if(c && def>ready.peek()){
+				  def = def - ready.peek();
+				  ing.add(first);
+				  c=true;
+			}
+			
+			if(c) {
+				
+			}
 		}
+		System.out.println(ing.toString());
 	}
 
 }
